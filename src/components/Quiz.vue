@@ -1,9 +1,9 @@
 <template>
   <div>
-    <v-touch v-on:swipeleft="previous" v-on:swipeRight="next">
+    <v-touch v-on:swipeleft="next" v-on:swiperight="previous">
       <div class="back">
         <router-link to="/">
-          X
+          ✕
         </router-link>
       </div>
       <div class="question">
@@ -85,6 +85,10 @@ export default {
       })
       for (let question of filteredQuestions) {
         question.title = question.title.replace(/&quot;/g, '"')
+        question.title = question.title.replace(/&#39;/g, '\'')
+        question.title = question.title.replace(/&lt;/g, '<')
+        question.title = question.title.replace(/&gt;/g, '>')
+        question.title = question.title.replace(/&amp;/g, '&')
       }
       this.questions = filteredQuestions
     })
@@ -102,7 +106,7 @@ export default {
   right: 20px;
 }
 .question {
-  font-size: 60px;
+  font-size: 30px;
   position: absolute;
   top: 50%;
   left: 50%;

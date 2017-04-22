@@ -75,7 +75,7 @@ export default {
   text-align: center;
 }
 .description {
-  font-size: 30px;
+  font-size: 25px;
   margin-top: 60px;
 }
 .description span {
