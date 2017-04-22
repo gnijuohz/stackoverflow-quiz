@@ -6,7 +6,7 @@
           ✕
         </router-link>
       </div>
-      <div class="question">
+      <div v-if="question" class="question">
         <div class="title">
           <a :href="question.link" target="_blank" rel="noopener">
             {{question.title}}
@@ -19,15 +19,18 @@
               {{question.owner.display_name}}
             </a>
           </span>
+          <span class="order">
+            {{currentIndex+1}}/{{this.questions.length}}
+          </span>
           <span class="tags">
             <span v-for="tag in question.tags">
               #{{tag}}
             </span>
           </span>
-          <span class="order">
-            {{currentIndex+1}}/{{this.questions.length}}
-          </span>
         </div>
+      </div>
+      <div v-else class="question">
+        Nothing Found 😔.
       </div>
     </v-touch>
   </div>
@@ -39,13 +42,13 @@ export default {
   name: 'quiz',
   data () {
     return {
-      questions: [],
+      questions: [{title: 'Loading Quiz...', 'link': '', owner: {}}],
       currentIndex: 0
     }
   },
   computed: {
     question () {
-      if (!this.questions.length) return {title: 'Loading Quiz...', 'link': '', owner: {}}
+      if (!this.questions.length) return false
       return this.questions[this.currentIndex]
     }
   },
@@ -72,6 +75,7 @@ export default {
   },
   mounted () {
     let selectedTags = this.$route.params.selectedTags || ['javascript']
+    console.log(selectedTags)
     let excludedTags = new Set(this.$route.params.excludedTags) || ['jquery']
     let url = `https://api.stackexchange.com/2.2/questions?&order=desc&sort=votes&tagged=${selectedTags.join(';')}&pagesize=100&site=stackoverflow`
     fetch(url).then(resp => resp.json()).then(data => {
@@ -117,9 +121,17 @@ export default {
   color: #666;
 }
 .meta .tags {
-  margin-left: 30px;
+  display: block;
 }
 .meta .order {
   float: right;
+}
+@media only screen and (min-device-width : 768px) {
+  .question {
+    font-size: 55px;
+  }
+  .meta {
+    font-size: 14px;
+  }
 }
 </style>

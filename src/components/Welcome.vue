@@ -17,7 +17,7 @@
           :options="tags"
           :multiple="true"
           :searchable="true"
-          :limit="3">
+          :max="3">
         </multiselect>
       </div>
 
@@ -28,7 +28,7 @@
           :options="tags"
           :multiple="true"
           :searchable="true"
-          :limit="3">
+          :max="3">
         </multiselect>
       </div>
       <div class="submit">
