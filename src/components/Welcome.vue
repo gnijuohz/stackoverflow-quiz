@@ -58,7 +58,7 @@ export default {
     }
   },
   created () {
-    let tagURL = 'https://api.stackexchange.com/2.2/tags?order=desc&sort=popular&site=stackoverflow'
+    let tagURL = 'https://api.stackexchange.com/2.2/tags?order=desc&sort=popular&pagesize=100&site=stackoverflow'
     fetch(tagURL).then(resp => resp.json()).then(data => {
       this.tags = data.items.map(tag => tag.name)
     })
