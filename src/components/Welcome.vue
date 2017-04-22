@@ -92,6 +92,7 @@ export default {
   margin-bottom: 60px;
 }
 .submit {
+  cursor: pointer;
   margin-top: 30px;
   padding: 0.75em 2em;
   border-radius: 2em;
