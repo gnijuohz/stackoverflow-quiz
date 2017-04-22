@@ -1,33 +1,35 @@
 <template>
   <div>
-    <div class="back">
-      <router-link to="/">
-        X
-      </router-link>
-    </div>
-    <div class="question">
-      <div class="title">
-        <a :href="question.link" target="_blank" rel="noopener">
-          {{question.title}}
-        </a>
+    <v-touch v-on:swipeleft="previous" v-on:swipeRight="next">
+      <div class="back">
+        <router-link to="/">
+          X
+        </router-link>
       </div>
-      <div class="meta">
-        <span class="asker">
-          <span>Asked by </span>
-          <a :href="question.owner.link" target="_blank" rel="noopener">
-            {{question.owner.display_name}}
+      <div class="question">
+        <div class="title">
+          <a :href="question.link" target="_blank" rel="noopener">
+            {{question.title}}
           </a>
-        </span>
-        <span class="tags">
-          <span v-for="tag in question.tags">
-            #{{tag}}
+        </div>
+        <div class="meta">
+          <span class="asker">
+            <span>Asked by </span>
+            <a :href="question.owner.link" target="_blank" rel="noopener">
+              {{question.owner.display_name}}
+            </a>
           </span>
-        </span>
-        <span class="order">
-          {{currentIndex+1}}/{{this.questions.length}}
-        </span>
+          <span class="tags">
+            <span v-for="tag in question.tags">
+              #{{tag}}
+            </span>
+          </span>
+          <span class="order">
+            {{currentIndex+1}}/{{this.questions.length}}
+          </span>
+        </div>
       </div>
-    </div>
+    </v-touch>
   </div>
 </template>
 
@@ -43,19 +45,25 @@ export default {
   },
   computed: {
     question () {
-      if (!this.questions.length) return {title: 'Loading Quiz...', 'link': ''}
+      if (!this.questions.length) return {title: 'Loading Quiz...', 'link': '', owner: {}}
       return this.questions[this.currentIndex]
     }
   },
   methods: {
+    previous () {
+      this.currentIndex = this.currentIndex ? this.currentIndex - 1 : this.questions.length - 1
+    },
+    next () {
+      this.currentIndex = this.currentIndex + 1
+      if (this.currentIndex === this.questions.length) {
+        this.currentIndex = 0
+      }
+    },
     navigate (e) {
       if (e.keyCode === 39) {
-        this.currentIndex = this.currentIndex + 1
-        if (this.currentIndex === this.questions.length) {
-          this.currentIndex = 0
-        }
+        this.next()
       } else if (e.keyCode === 37) {
-        this.currentIndex = this.currentIndex ? this.currentIndex - 1 : this.questions.length - 1
+        this.previous()
       }
     }
   },
@@ -90,8 +98,8 @@ export default {
 <style scoped>
 .back {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
 }
 .question {
   font-size: 60px;
