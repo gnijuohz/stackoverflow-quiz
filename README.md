@@ -2,6 +2,16 @@
 
 > Quiz yourslef with questions from StackOverflow!
 
+Choose tags to use and tags to exclude and start a quiz.
+
+Think about it yourself first and the answers are always just one click away.
+
+![screenshots/1.png](screenshots/1.png)
+
+![screenshots/2.png](screenshots/2.png)
+
+![screenshots/3.png](screenshots/3.png)
+
 ## Build Setup
 
 ``` bash
@@ -23,5 +33,3 @@ npm run unit
 # run all tests
 npm test
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
