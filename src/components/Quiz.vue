@@ -42,7 +42,7 @@ export default {
   name: 'quiz',
   data () {
     return {
-      questions: [{title: 'Loading Quiz...', 'link': '', owner: {}}],
+      questions: [{title: 'Use arrow keys or swipe (mobile) to navigate!', 'link': '', owner: {}}],
       currentIndex: 0
     }
   },
