@@ -75,9 +75,9 @@ export default {
   },
   mounted () {
     let selectedTags = this.$route.params.selectedTags || ['javascript']
-    console.log(selectedTags)
+    let selected = selectedTags.join(';').replace('#', '%23')
     let excludedTags = new Set(this.$route.params.excludedTags) || ['jquery']
-    let url = `https://api.stackexchange.com/2.2/questions?&order=desc&sort=votes&tagged=${selectedTags.join(';')}&pagesize=100&site=stackoverflow`
+    let url = `https://api.stackexchange.com/2.2/questions?&order=desc&sort=votes&tagged=${selected}&pagesize=100&site=stackoverflow`
     fetch(url).then(resp => resp.json()).then(data => {
       let filteredQuestions = data.items.filter(question => {
         for (let tag of question.tags) {
