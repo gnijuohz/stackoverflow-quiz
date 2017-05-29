@@ -31,8 +31,8 @@
           :max="3">
         </multiselect>
       </div>
-      <div class="submit">
-        <span @click="go"> Start </span>
+      <div class="submit" @click="go">
+        <span> Start </span>
       </div>
     </div>
   </div>
