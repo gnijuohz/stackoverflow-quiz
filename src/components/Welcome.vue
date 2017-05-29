@@ -3,10 +3,10 @@
     <h1> Got Time for a Quiz? </h1>
     <div class="description">
       <span>
-        Answer questions (from StackOverflow),
+        Can you answers these questions (from StackOverflow),
       </span>
       <span>
-        <em>without</em> looking up StackOverflow
+        <em>without</em> looking up StackOverflow?
       </span>
     </div>
     <div class="options">
@@ -95,12 +95,11 @@ export default {
   cursor: pointer;
   margin-top: 30px;
   padding: 0.75em 2em;
-  border-radius: 2em;
+  border-radius: 0.5em;
   display: inline-block;
-  color: #fff;
-  background-color: #4fc08d;
-  transition: all 0.15s ease;
   box-sizing: border-box;
   border: 1px solid #4fc08d;
+  color: #fff;
+  background-color: #4fc08d;
 }
 </style>

@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import router from '../router'
 
 export default {
   name: 'quiz',
@@ -67,6 +68,8 @@ export default {
         this.next()
       } else if (e.keyCode === 37) {
         this.previous()
+      } else if (e.keyCode === 27) {
+        router.go(-1)
       }
     }
   },
@@ -88,11 +91,7 @@ export default {
         return true
       })
       for (let question of filteredQuestions) {
-        question.title = question.title.replace(/&quot;/g, '"')
-        question.title = question.title.replace(/&#39;/g, '\'')
-        question.title = question.title.replace(/&lt;/g, '<')
-        question.title = question.title.replace(/&gt;/g, '>')
-        question.title = question.title.replace(/&amp;/g, '&')
+        question.title = question.title.replace(/&quot;/g, '"').replace(/&#39;/g, '\'').replace(/&#39;/g, '\'').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&')
       }
       this.questions = filteredQuestions
     })
